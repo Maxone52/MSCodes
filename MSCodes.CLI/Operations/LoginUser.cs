@@ -2,11 +2,18 @@
 {
     public class LoginUser : IOperation
     {
-        public string Name { get; set; }
+        public string Name => "Login into the system";
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            Console.Write("Введите ваш email");
+            string? email = Console.ReadLine();
+            User? user = UserStorage.Get(email);
+
+            if (user == null)
+            {
+                UserSession.CurrentUser = user;
+            }
         }
     }
 }

@@ -1,3 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using MSCodes.CLI.Operations;
 
-Console.WriteLine("Hello, World!");
+IOperation[] operation = new IOperation[]
+{
+    new CreateNewUser(),
+    new LoginUser()
+};
+
+Menu menu = new Menu(operation);
+
+Application application = new(menu);
+application.Run();

@@ -11,13 +11,24 @@ public class Menu
 
     public string[] GetOperationNames()
     {
-        List<string> operationNames = new List<string>();
+        List<string> operationNames = new();
 
-        foreach (IOperation operation in _operations)
+        for (int i = 0; i < _operations.Length; i++)
         {
-            operationNames.Add(operation.Name)
+            IOperation operation = _operations[i];
+            operationNames.Add($"{i} - {operation.Name}");
         }
 
         return operationNames.ToArray();
+    }
+
+    public void Enter(int operationNumber)
+    {
+        if (operationNumber < 0 || operationNumber >= _operations.Length)
+        {
+            return;
+        }
+
+        _operations[operationNumber].Execute();
     }
 }
